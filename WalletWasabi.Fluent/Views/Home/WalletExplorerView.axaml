@@ -4,7 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Home.WalletExplorerView">
-    <Panel>
-        <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-    </Panel>
+  <UserControl.Styles>
+    <Style Selector="Button">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Margin" Value="20" />
+      <Setter Property="Padding" Value="10" />
+      <Setter Property="Width" Value="180" />
+      <Setter Property="Height" Value="100" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <DockPanel>
+      <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Center" />
+        <TextBox DockPanel.Dock="Top" Width="400" Margin="10" Watermark="Search" />
+      </StackPanel>
+      <ItemsControl Items="{Binding Wallets}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <WrapPanel />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Button Content="{Binding Title}" Command="{Binding ShowCommand}" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </DockPanel>
+  </ScrollViewer>
 </UserControl>

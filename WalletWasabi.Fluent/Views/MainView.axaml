@@ -6,27 +6,29 @@
              xmlns:vl="clr-namespace:WalletWasabi.Fluent"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.MainView">
-    <DockPanel>
-        <Button DockPanel.Dock="Top"
-                Content="&lt;"
-                FontSize="28"
-                Margin="10"
-                BorderBrush="Transparent"
-                Background="Transparent"
-                HorizontalAlignment="Left"
-                Command="{Binding GoBack}" />
-        <rxui:RoutedViewHost Router="{Binding Router}">
-            <rxui:RoutedViewHost.ViewLocator>
-                <vl:ScreenViewLocator />
-            </rxui:RoutedViewHost.ViewLocator>
-            <rxui:RoutedViewHost.PageTransition>
-                <CrossFade Duration="0:0:0.25" />
-            </rxui:RoutedViewHost.PageTransition>
-            <rxui:RoutedViewHost.DefaultContent>
-                <TextBlock Text="Default content"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-            </rxui:RoutedViewHost.DefaultContent>
-        </rxui:RoutedViewHost>
-    </DockPanel>
+  <DockPanel>
+    <Button DockPanel.Dock="Top"
+            Content="&lt;"
+            FontSize="28"
+            Margin="10"
+            MinWidth="50"
+            MinHeight="50"
+            BorderBrush="Transparent"
+            Background="Transparent"
+            HorizontalAlignment="Left"
+            Command="{Binding GoBack}" />
+    <rxui:RoutedViewHost Router="{Binding Router}">
+      <rxui:RoutedViewHost.ViewLocator>
+        <vl:ScreenViewLocator />
+      </rxui:RoutedViewHost.ViewLocator>
+      <rxui:RoutedViewHost.PageTransition>
+        <CrossFade Duration="0:0:0.25" />
+      </rxui:RoutedViewHost.PageTransition>
+      <rxui:RoutedViewHost.DefaultContent>
+        <TextBlock Text="Default content"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+      </rxui:RoutedViewHost.DefaultContent>
+    </rxui:RoutedViewHost>
+  </DockPanel>
 </UserControl>

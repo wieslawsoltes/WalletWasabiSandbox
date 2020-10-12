@@ -8,5 +8,5 @@
         MinWidth="500" MinHeight="380"
         WindowStartupLocation="CenterScreen"
         Title="Wasabi Wallet">
-    <local:MainView />
+  <local:MainView />
 </Window>
