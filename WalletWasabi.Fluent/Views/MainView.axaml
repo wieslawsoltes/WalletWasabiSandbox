@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+             xmlns:vl="clr-namespace:WalletWasabi.Fluent"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="WalletWasabi.Fluent.Views.MainView">
+    <DockPanel>
+        <Button DockPanel.Dock="Top"
+                Content="&lt;"
+                FontSize="28"
+                Margin="10"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                HorizontalAlignment="Left"
+                Command="{Binding GoBack}" />
+        <rxui:RoutedViewHost Router="{Binding Router}">
+            <rxui:RoutedViewHost.ViewLocator>
+                <vl:ScreenViewLocator />
+            </rxui:RoutedViewHost.ViewLocator>
+            <rxui:RoutedViewHost.PageTransition>
+                <CrossFade Duration="0:0:0.25" />
+            </rxui:RoutedViewHost.PageTransition>
+            <rxui:RoutedViewHost.DefaultContent>
+                <TextBlock Text="Default content"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </rxui:RoutedViewHost.DefaultContent>
+        </rxui:RoutedViewHost>
+    </DockPanel>
+</UserControl>
