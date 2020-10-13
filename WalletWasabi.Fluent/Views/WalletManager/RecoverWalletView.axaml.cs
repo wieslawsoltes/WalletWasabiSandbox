@@ -4,7 +4,7 @@ using WalletWasabi.Fluent.ViewModels.WalletManager;
 
 namespace WalletWasabi.Fluent.Views.WalletManager
 {
-	public class RecoverWalletView : ReactiveUserControl<RecoverWalletView>
+	public class RecoverWalletView : ReactiveUserControl<RecoverWalletViewModel>
 	{
 		public RecoverWalletView()
 		{
