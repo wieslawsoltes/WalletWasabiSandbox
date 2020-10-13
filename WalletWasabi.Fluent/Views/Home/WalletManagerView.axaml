@@ -25,7 +25,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
           <TextBox DockPanel.Dock="Top" Text="{Binding Name}" Width="400" Margin="10" Watermark="Wallet Name" />
         </StackPanel>
-        <ItemsControl Items="{Binding Items}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ItemsControl Items="{Binding Items}" Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
               <WrapPanel />

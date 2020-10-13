@@ -21,7 +21,7 @@
         <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
       </StackPanel>
       <!-- Content -->
-      <ItemsControl Items="{Binding Wallets}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+      <ItemsControl Items="{Binding Wallets}" Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
             <WrapPanel />
