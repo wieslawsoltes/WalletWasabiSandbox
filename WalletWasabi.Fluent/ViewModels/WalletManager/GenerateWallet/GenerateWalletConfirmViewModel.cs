@@ -11,7 +11,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 		{
 			ShowCommand = ReactiveCommand.Create(() => wizardScreen.Router.Navigate.Execute(this));
 			CancelCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(cancel));
-			NextCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(home));
+			NextCommand = ReactiveCommand.Create(() => homeScreen.Router.NavigateAndReset.Execute(home));
 		}
 
 		public ICommand ShowCommand { get; }
