@@ -6,7 +6,7 @@
              x:Class="WalletWasabi.Fluent.Views.Home.SettingsView">
   <DockPanel>
     <!-- Header -->
-    <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+    <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Top">
       <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
     </StackPanel>
     <!-- Content -->
