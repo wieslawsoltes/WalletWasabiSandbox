@@ -13,10 +13,9 @@
         <Button DockPanel.Dock="Top"
                 Content="&lt;"
                 FontSize="28"
-                Margin="10"
+                Margin="5"
                 MinWidth="50"
                 MinHeight="50"
-                BorderBrush="Transparent"
                 Background="Transparent"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -29,7 +28,7 @@
       </DockPanel>
     </SplitView.Pane>
     <!-- Content -->
-    <DockPanel>
+    <DockPanel Background="WhiteSmoke">
       <rxui:RoutedViewHost Router="{Binding Router}">
         <rxui:RoutedViewHost.ViewLocator>
           <vl:ScreenViewLocator />
