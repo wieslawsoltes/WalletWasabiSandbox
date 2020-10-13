@@ -1,13 +1,14 @@
+using System.Reactive;
 using System.Windows.Input;
 using ReactiveUI;
 using WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet;
 
 namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
-	public class GenerateWalletViewModel : RoutableViewModel
+	public class GenerateWalletViewModel : RoutableViewModel, IScreen
 	{
+		private IScreen _screen;
 		private RoutableViewModel _cancel;
-		private RoutableViewModel _next;
 		private string _name;
 		private string _password;
 		private string _confirmPassword;
@@ -15,19 +16,18 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 
 		public GenerateWalletViewModel(IScreen screen, string title, string name, RoutableViewModel cancel) : base(screen, "GenerateWallet", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
-			CancelCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(_cancel));
-			NextCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(_next));
+			_screen = screen;
+			ShowCommand = ReactiveCommand.Create(() => _screen.Router.Navigate.Execute(this));
 			_cancel = cancel;
-			_next = new GenerateWalletRecoveryViewModel(screen, "Create Wallet", cancel);
 			_name = name;
+			Router.NavigateAndReset.Execute(new GenerateWalletPasswordViewModel(this, "Create Wallet", cancel));
 		}
 
+		public RoutingState Router { get; } = new RoutingState();
+
+		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
+
 		public ICommand ShowCommand { get; }
-
-		public ICommand CancelCommand { get; }
-
-		public ICommand NextCommand { get; }
 
 		public string Name
 		{

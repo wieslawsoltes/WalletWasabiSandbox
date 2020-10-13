@@ -2,23 +2,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+             xmlns:vl="clr-namespace:WalletWasabi.Fluent"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.WalletManager.GenerateWalletView">
-  <DockPanel>
-    <!-- Header -->
-    <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-      <TextBlock Text="{Binding Title}" FontSize="32" Margin="10" HorizontalAlignment="Left" />
-    </StackPanel>
-    <!-- Content -->
-    <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
-      <Button DockPanel.Dock="Left" Content="Cancel" HorizontalAlignment="Left" Command="{Binding CancelCommand}" Background="Transparent" BorderBrush="Transparent" MinWidth="100" Margin="10" Padding="10" />
-      <Button DockPanel.Dock="Right" Content="Next" HorizontalAlignment="Right" Command="{Binding NextCommand}" MinWidth="100" Margin="10" Padding="10" />
-    </DockPanel>
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-      <TextBlock Text="Choose password:" Margin="10" />
-      <TextBox Text="{Binding Password}" MinWidth="400" Margin="10,5,10,5" PasswordChar="*" Watermark="Password" />
-      <TextBlock Text="Confirm password:" Margin="10" />
-      <TextBox Text="{Binding ConfirmPassword}" MinWidth="400" Margin="10,5,10,5" PasswordChar="*" Watermark="Password" />
-    </StackPanel>
-  </DockPanel>
+  <rxui:RoutedViewHost Router="{Binding Router}">
+    <rxui:RoutedViewHost.ViewLocator>
+      <vl:ScreenViewLocator />
+    </rxui:RoutedViewHost.ViewLocator>
+    <rxui:RoutedViewHost.PageTransition>
+      <CrossFade Duration="0:0:0.25" />
+    </rxui:RoutedViewHost.PageTransition>
+    <rxui:RoutedViewHost.DefaultContent>
+      <TextBlock Text="Default content"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
+    </rxui:RoutedViewHost.DefaultContent>
+  </rxui:RoutedViewHost>
 </UserControl>
