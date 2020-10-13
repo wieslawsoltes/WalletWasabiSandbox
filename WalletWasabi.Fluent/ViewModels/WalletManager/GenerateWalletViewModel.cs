@@ -1,18 +1,19 @@
 using System.Windows.Input;
 using ReactiveUI;
 
-namespace WalletWasabi.Fluent.ViewModels.WalletExplorer
+namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
-	public class AddWalletViewModel : RoutableViewModel
+    public class GenerateWalletViewModel : RoutableViewModel
 	{
 		private string _name;
 		private string _password;
 		private string _passwordConfirm;
 		private string[] _recovery;
 
-		public AddWalletViewModel(IScreen screen, string title) : base(screen, "Wallet", title)
+		public GenerateWalletViewModel(IScreen screen, string title, string name) : base(screen, "GenerateWallet", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			_name = name;
 		}
 
 		public ICommand ShowCommand { get; }

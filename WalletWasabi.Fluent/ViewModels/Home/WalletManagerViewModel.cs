@@ -5,7 +5,7 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 {
 	public class WalletManagerViewModel : RoutableViewModel
 	{
-		public WalletManagerViewModel(IScreen screen) : base(screen, "WalletManager", "Wallet Manager")
+		public WalletManagerViewModel(IScreen screen, string title = "Wallet Manager") : base(screen, "WalletManager", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
 		}
