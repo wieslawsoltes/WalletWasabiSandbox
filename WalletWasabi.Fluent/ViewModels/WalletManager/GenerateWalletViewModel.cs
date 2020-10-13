@@ -12,12 +12,12 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 		private string _confirmPassword;
 		private string[] _recoveryWords;
 
-		public GenerateWalletViewModel(IScreen screen, string title, string name, RoutableViewModel cancel) : base(screen, "GenerateWallet", title)
+		public GenerateWalletViewModel(IScreen screen, string title, string name, RoutableViewModel cancel, RoutableViewModel home) : base(screen, "GenerateWallet", title)
 		{
 			_name = name;
 			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
 			Router.NavigateAndReset.Execute(
-				new GenerateWalletPasswordViewModel(screen, this, "Create Wallet", cancel));
+				new GenerateWalletPasswordViewModel(screen, this, "Create Wallet", cancel, home));
 		}
 
 		public RoutingState Router { get; } = new RoutingState();

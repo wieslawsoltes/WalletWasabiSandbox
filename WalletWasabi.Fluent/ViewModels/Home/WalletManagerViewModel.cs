@@ -10,13 +10,13 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 		private string _name;
 		private ObservableCollection<RoutableViewModel> _items;
 
-		public WalletManagerViewModel(IScreen screen, string title = "Wallet Manager") : base(screen, "WalletManager", title)
+		public WalletManagerViewModel(IScreen screen, string title, RoutableViewModel home) : base(screen, "WalletManager", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
 
 			_items = new ObservableCollection<RoutableViewModel>
 			{
-				new GenerateWalletViewModel(screen, "Create new Wallet", "", this),
+				new GenerateWalletViewModel(screen, "Create new Wallet", "", this, home),
 				new RecoverWalletViewModel(screen, "Recover Wallet"),
 				new LoadWalletViewModel(screen, "Import Wallet"),
 				new TestPasswordViewModel(screen, "Test Password"),

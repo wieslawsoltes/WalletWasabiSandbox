@@ -7,11 +7,11 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 	{
 		private string[] _recoveryWords;
 
-		public GenerateWalletConfirmViewModel(IScreen homeScreen, IScreen wizardScreen, string title, RoutableViewModel cancel) : base(wizardScreen, "GenerateWalletConfirm", title)
+		public GenerateWalletConfirmViewModel(IScreen homeScreen, IScreen wizardScreen, string title, RoutableViewModel cancel, RoutableViewModel home) : base(wizardScreen, "GenerateWalletConfirm", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => wizardScreen.Router.Navigate.Execute(this));
 			CancelCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(cancel));
-			NextCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(cancel));
+			NextCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(home));
 		}
 
 		public ICommand ShowCommand { get; }
