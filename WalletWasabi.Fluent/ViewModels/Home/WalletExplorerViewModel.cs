@@ -16,8 +16,8 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 
 			_walletManager = walletManager;
 
-            _wallets = new ObservableCollection<RoutableViewModel>
-            {
+			_wallets = new ObservableCollection<RoutableViewModel>
+			{
 				new WalletViewModel(screen, "Random Wallet (0 BTC)"),
 				new WalletViewModel(screen, "Random Wallet 2 (0 BTC)"),
 				new WalletViewModel(screen, "Random Wallet 3 (0 BTC)"),

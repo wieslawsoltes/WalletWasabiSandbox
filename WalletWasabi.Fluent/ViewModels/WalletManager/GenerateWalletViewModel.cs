@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
-    public class GenerateWalletPasswordViewModel : RoutableViewModel
+	public class GenerateWalletPasswordViewModel : RoutableViewModel
 	{
 		private RoutableViewModel _next;
 		private string _password;
@@ -33,7 +33,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 		}
 	}
 
-    public class GenerateWalletViewModel : RoutableViewModel
+	public class GenerateWalletViewModel : RoutableViewModel
 	{
 		private string _name;
 		private string _password;

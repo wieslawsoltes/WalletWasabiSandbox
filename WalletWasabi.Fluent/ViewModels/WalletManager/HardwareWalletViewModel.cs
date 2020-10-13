@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
-    public class HardwareWalletViewModel : RoutableViewModel
+	public class HardwareWalletViewModel : RoutableViewModel
 	{
 		public HardwareWalletViewModel(IScreen screen, string title) : base(screen, "HardwareWallet", title)
 		{

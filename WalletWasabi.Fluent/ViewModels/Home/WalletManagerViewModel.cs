@@ -5,7 +5,7 @@ using WalletWasabi.Fluent.ViewModels.WalletManager;
 
 namespace WalletWasabi.Fluent.ViewModels.Home
 {
-    public class WalletManagerViewModel : RoutableViewModel
+	public class WalletManagerViewModel : RoutableViewModel
 	{
 		private string _name;
 		private ObservableCollection<RoutableViewModel> _items;
