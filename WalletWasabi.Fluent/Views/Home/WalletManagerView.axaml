@@ -16,22 +16,28 @@
   </UserControl.Styles>
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <DockPanel>
-      <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Center" />
-        <TextBox DockPanel.Dock="Top" Text="{Binding Name}" Width="400" Margin="10" Watermark="Wallet Name" />
+      <!-- Header -->
+      <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
       </StackPanel>
-      <ItemsControl Items="{Binding Items}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ItemsControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <WrapPanel />
-          </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-          <DataTemplate>
-            <Button Content="{Binding Title}" Command="{Binding ShowCommand}" />
-          </DataTemplate>
-        </ItemsControl.ItemTemplate>
-      </ItemsControl>
+      <!-- Content -->
+      <StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+          <TextBox DockPanel.Dock="Top" Text="{Binding Name}" Width="400" Margin="10" Watermark="Wallet Name" />
+        </StackPanel>
+        <ItemsControl Items="{Binding Items}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <Button Content="{Binding Title}" Command="{Binding ShowCommand}" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
     </DockPanel>
   </ScrollViewer>
 </UserControl>

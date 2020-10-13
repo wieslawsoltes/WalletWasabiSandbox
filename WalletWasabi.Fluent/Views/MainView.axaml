@@ -7,6 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.MainView">
   <DockPanel>
+    <!-- Pane -->
     <Button DockPanel.Dock="Left"
             Content="&lt;"
             FontSize="28"
@@ -18,6 +19,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding GoBack}" />
+    <!-- Content -->
     <rxui:RoutedViewHost Router="{Binding Router}">
       <rxui:RoutedViewHost.ViewLocator>
         <vl:ScreenViewLocator />

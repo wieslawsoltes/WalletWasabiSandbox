@@ -16,9 +16,11 @@
   </UserControl.Styles>
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <DockPanel>
+      <!-- Header -->
       <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Center">
         <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
       </StackPanel>
+      <!-- Content -->
       <ItemsControl Items="{Binding Wallets}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
         <ItemsControl.ItemsPanel>
           <ItemsPanelTemplate>
