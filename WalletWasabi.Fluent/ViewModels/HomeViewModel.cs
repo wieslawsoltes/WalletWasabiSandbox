@@ -10,7 +10,7 @@ namespace WalletWasabi.Fluent.ViewModels
 
 		public HomeViewModel(IScreen screen) : base(screen, "Home", "Wasabi Wallet")
 		{
-			var walletManager = new WalletManagerViewModel(screen, "Add Wallet");
+			var walletManager = new WalletManagerViewModel(screen);
 
 			_items = new ObservableCollection<RoutableViewModel>
 			{
