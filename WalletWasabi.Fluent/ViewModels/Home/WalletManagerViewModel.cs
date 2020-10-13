@@ -16,7 +16,7 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 
 			_items = new ObservableCollection<RoutableViewModel>
 			{
-				new GenerateWalletViewModel(screen, "Create new Wallet", ""),
+				new GenerateWalletViewModel(screen, "Create new Wallet", "", this),
 				new RecoverWalletViewModel(screen, "Recover Wallet"),
 				new LoadWalletViewModel(screen, "Import Wallet"),
 				new TestPasswordViewModel(screen, "Test Password"),
