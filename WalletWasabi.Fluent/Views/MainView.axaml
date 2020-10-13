@@ -6,32 +6,43 @@
              xmlns:vl="clr-namespace:WalletWasabi.Fluent"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.MainView">
-  <DockPanel>
-    <!-- Pane -->
-    <Button DockPanel.Dock="Left"
-            Content="&lt;"
-            FontSize="28"
-            Margin="10"
-            MinWidth="50"
-            MinHeight="50"
-            BorderBrush="Transparent"
-            Background="Transparent"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Command="{Binding GoBack}" />
+  <SplitView IsPaneOpen="True" DisplayMode="Inline" PaneBackground="LightGray" OpenPaneLength="200">
+    <SplitView.Pane>
+      <!-- Pane -->
+      <DockPanel>
+        <Button DockPanel.Dock="Top"
+                Content="&lt;"
+                FontSize="28"
+                Margin="10"
+                MinWidth="50"
+                MinHeight="50"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Command="{Binding GoBack}" />
+        <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+          <Button Content="Add Wallet" Command="{Binding AddWalletCommand}" Background="Transparent" Margin="5" Padding="5" />
+          <Button Content="Help" Command="{Binding HelpCommand}" Background="Transparent" Margin="5" Padding="5" />
+          <Button Content="Settings" Command="{Binding SettingsCommand}" Background="Transparent" Margin="5" Padding="5" />
+        </StackPanel>
+      </DockPanel>
+    </SplitView.Pane>
     <!-- Content -->
-    <rxui:RoutedViewHost Router="{Binding Router}">
-      <rxui:RoutedViewHost.ViewLocator>
-        <vl:ScreenViewLocator />
-      </rxui:RoutedViewHost.ViewLocator>
-      <rxui:RoutedViewHost.PageTransition>
-        <CrossFade Duration="0:0:0.25" />
-      </rxui:RoutedViewHost.PageTransition>
-      <rxui:RoutedViewHost.DefaultContent>
-        <TextBlock Text="Default content"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-      </rxui:RoutedViewHost.DefaultContent>
-    </rxui:RoutedViewHost>
-  </DockPanel>
+    <DockPanel>
+      <rxui:RoutedViewHost Router="{Binding Router}">
+        <rxui:RoutedViewHost.ViewLocator>
+          <vl:ScreenViewLocator />
+        </rxui:RoutedViewHost.ViewLocator>
+        <rxui:RoutedViewHost.PageTransition>
+          <CrossFade Duration="0:0:0.25" />
+        </rxui:RoutedViewHost.PageTransition>
+        <rxui:RoutedViewHost.DefaultContent>
+          <TextBlock Text="Default content"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center" />
+        </rxui:RoutedViewHost.DefaultContent>
+      </rxui:RoutedViewHost>
+    </DockPanel>
+  </SplitView>
 </UserControl>
