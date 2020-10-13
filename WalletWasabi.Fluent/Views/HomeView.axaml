@@ -16,9 +16,8 @@
   </UserControl.Styles>
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <DockPanel>
-      <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Center" />
-        <TextBox DockPanel.Dock="Top" Width="400" Margin="10" Watermark="Search" />
+      <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
       </StackPanel>
       <ItemsControl Items="{Binding Items}"  Margin="10" MaxWidth="800" HorizontalAlignment="Center" VerticalAlignment="Center">
         <ItemsControl.ItemsPanel>

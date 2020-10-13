@@ -4,7 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Home.HelpView">
-  <Panel>
-    <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-  </Panel>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top" MinHeight="50" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+      <TextBlock Text="{Binding Title}" FontSize="32" Margin="10"  HorizontalAlignment="Left" />
+    </StackPanel>
+    <!-- Content -->
+  </DockPanel>
 </UserControl>
