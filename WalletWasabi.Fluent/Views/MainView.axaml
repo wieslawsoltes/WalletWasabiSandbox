@@ -20,6 +20,9 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Command="{Binding GoBack}" />
+        <StackPanel DockPanel.Dock="Top" VerticalAlignment="Top">
+          <Button Content="Wasabi Wallet" Command="{Binding HomeCommand}" Background="Transparent" Margin="5" Padding="5" />
+        </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
           <Button Content="Add Wallet" Command="{Binding AddWalletCommand}" Background="Transparent" Margin="5" Padding="5" />
           <Button Content="Help" Command="{Binding HelpCommand}" Background="Transparent" Margin="5" Padding="5" />

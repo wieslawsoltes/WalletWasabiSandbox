@@ -14,6 +14,8 @@ namespace WalletWasabi.Fluent.ViewModels
 			var walletManagerViewModel = new WalletManagerViewModel(this, "Add Wallet", walletExplorerViewModel);
 			var settingsViewModel = new SettingsViewModel(this);
 
+			HomeCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletExplorerViewModel));
+
 			HelpCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(helpViewModel));
 			AddWalletCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletManagerViewModel));
 			SettingsCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(settingsViewModel));
@@ -25,6 +27,8 @@ namespace WalletWasabi.Fluent.ViewModels
 		public RoutingState Router { get; } = new RoutingState();
 
 		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
+
+		public ICommand HomeCommand { get; }
 
 		public ICommand HelpCommand { get; }
 
