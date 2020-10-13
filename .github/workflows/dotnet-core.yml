@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Publish
-      run: dotnet publish ./WalletWasabi.Fluent/WalletWasabi.Fluent.csproj -c Release -f netcoreapp3.1 -r win7-x64 /p:PublishTrimmed=True /p:PublishReadyToRun=True -o ./artifacts/WalletWasabi.Fluent-win7-x64
+      run: dotnet publish ./WalletWasabi.Fluent/WalletWasabi.Fluent.csproj -c Release -f netcoreapp3.1 -r win7-x64 /p:PublishTrimmed=True /p:PublishReadyToRun=False -o ./artifacts/WalletWasabi.Fluent-win7-x64
     - name: Artifacts
       uses: actions/upload-artifact@master
       with:
