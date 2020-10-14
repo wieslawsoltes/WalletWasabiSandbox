@@ -4,16 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.Home.WalletManagerView">
-  <UserControl.Styles>
-    <Style Selector="Button">
-      <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Margin" Value="20" />
-      <Setter Property="Padding" Value="10" />
-      <Setter Property="Width" Value="180" />
-      <Setter Property="Height" Value="100" />
-      <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-  </UserControl.Styles>
   <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <DockPanel>
       <!-- Header -->
@@ -33,7 +23,7 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate>
-              <Button Content="{Binding Title}" Command="{Binding ShowCommand}" />
+               <Button Classes="item" Content="{Binding Title}" Command="{Binding ShowCommand}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
