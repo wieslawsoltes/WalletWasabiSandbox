@@ -7,31 +7,28 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 {
 	public class WalletExplorerViewModel : RoutableViewModel
 	{
-		private WalletManagerViewModel _walletManager;
-		private ObservableCollection<RoutableViewModel> _wallets;
+		private ObservableCollection<RoutableViewModel> _items;
 
-		public WalletExplorerViewModel(IScreen screen, WalletManagerViewModel walletManager = default) : base(screen, "WalletExplorer", "Wallet Explorer")
+		public WalletExplorerViewModel(IScreen screen) : base(screen, "WalletExplorer", "Wallet Explorer")
 		{
 			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
 
-			_walletManager = walletManager ?? new WalletManagerViewModel(screen, "Add Wallet", this);
-
-			_wallets = new ObservableCollection<RoutableViewModel>
+			_items = new ObservableCollection<RoutableViewModel>
 			{
 				new WalletViewModel(screen, "Random Wallet (0 BTC)"),
 				new WalletViewModel(screen, "Random Wallet 2 (0 BTC)"),
 				new WalletViewModel(screen, "Random Wallet 3 (0 BTC)"),
 				new WalletViewModel(screen, "Random Wallet 4 (0 BTC)"),
-				_walletManager,
+				new AddWalletViewModel(screen, "Add Wallet", this),
 			};
 		}
 
 		public ICommand ShowCommand { get; }
 
-		public ObservableCollection<RoutableViewModel> Wallets
+		public ObservableCollection<RoutableViewModel> Items
 		{
-			get => _wallets;
-			set => this.RaiseAndSetIfChanged(ref _wallets, value);
+			get => _items;
+			set => this.RaiseAndSetIfChanged(ref _items, value);
 		}
 	}
 }
