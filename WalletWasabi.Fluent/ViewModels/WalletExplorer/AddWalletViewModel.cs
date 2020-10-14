@@ -8,7 +8,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletExplorer
 	{
 		public AddWalletViewModel(IScreen screen, string title, RoutableViewModel home) : base(screen, "AddWallet", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(new WalletManagerViewModel(screen, "Create new Wallet", home)));
+			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(new WalletManagerViewModel(screen, "Add Wallet", home)));
 		}
 
 		public ICommand ShowCommand { get; }

@@ -13,7 +13,7 @@ namespace WalletWasabi.Fluent.ViewModels
 			_items = new ObservableCollection<RoutableViewModel>
 			{
 				new WalletExplorerViewModel(screen),
-				new WalletManagerViewModel(screen, "Wallet", this),
+				new WalletManagerViewModel(screen, "Add Wallet", this),
 				new TransactionBroadcasterViewModel(screen),
 				new SettingsViewModel(screen),
 				new HelpViewModel(screen)
