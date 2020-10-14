@@ -11,17 +11,20 @@ namespace WalletWasabi.Fluent.ViewModels
 		{
 			var helpViewModel = new HelpViewModel(this);
 			var walletExplorerViewModel = new WalletExplorerViewModel(this);
-			var walletManagerViewModel = new WalletManagerViewModel(this, "Add Wallet", walletExplorerViewModel);
 			var settingsViewModel = new SettingsViewModel(this);
 
 			HomeCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletExplorerViewModel));
 
 			HelpCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(helpViewModel));
-			AddWalletCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletManagerViewModel));
+
+			AddWalletCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(
+				new WalletManagerViewModel(this, "Add Wallet", walletExplorerViewModel)));
+
 			SettingsCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(settingsViewModel));
 
-			//Router.NavigateAndReset.Execute(new HomeViewModel(this));
 			Router.NavigateAndReset.Execute(walletExplorerViewModel);
+
+			// Router.NavigateAndReset.Execute(new HomeViewModel(this));
 		}
 
 		public RoutingState Router { get; } = new RoutingState();
