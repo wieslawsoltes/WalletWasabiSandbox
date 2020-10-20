@@ -3,11 +3,11 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Settings
 {
-    public class BitcoinSettingsViewModel : RoutableViewModel
+	public class BitcoinSettingsViewModel : RoutableViewModel
 	{
-		public BitcoinSettingsViewModel(IScreen screen, string title) : base(screen, "BitcoinSettings", title)
+		public BitcoinSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "BitcoinSettings", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

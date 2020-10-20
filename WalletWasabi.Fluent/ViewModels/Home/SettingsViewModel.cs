@@ -9,18 +9,18 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 	{
 		private ObservableCollection<RoutableViewModel> _items;
 
-		public SettingsViewModel(IScreen screen) : base(screen, "Settings", "Settings")
+		public SettingsViewModel(NavigationState navigationState) : base(navigationState, "Settings", "Settings")
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 
 			_items = new ObservableCollection<RoutableViewModel>
 			{
-				new BitcoinSettingsViewModel(screen, "Bitcoin"),
-				new TorSettingsViewModel(screen, "Tor"),
-				new UISettingsViewModel(screen, "UI"),
-				new LockScreenSettingsViewModel(screen, "Lock Screen"),
-				new AnonymityLevelsSettingsViewModel(screen, "Anonymity Levels"),
-				new OtherSettingsSettingsViewModel(screen, "Other Settings")
+				new BitcoinSettingsViewModel(navigationState, "Bitcoin"),
+				new TorSettingsViewModel(navigationState, "Tor"),
+				new UISettingsViewModel(navigationState, "UI"),
+				new LockScreenSettingsViewModel(navigationState, "Lock Screen"),
+				new AnonymityLevelsSettingsViewModel(navigationState, "Anonymity Levels"),
+				new OtherSettingsSettingsViewModel(navigationState, "Other Settings")
 			};
 		}
 

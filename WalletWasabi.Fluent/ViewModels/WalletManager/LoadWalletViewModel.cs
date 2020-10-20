@@ -5,9 +5,9 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
 	public class LoadWalletViewModel : RoutableViewModel
 	{
-		public LoadWalletViewModel(IScreen screen, string title) : base(screen, "LoadWallet", title)
+		public LoadWalletViewModel(NavigationState navigationState, string title) : base(navigationState, "LoadWallet", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

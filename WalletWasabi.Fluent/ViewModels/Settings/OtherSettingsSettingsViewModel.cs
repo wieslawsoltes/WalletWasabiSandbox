@@ -1,13 +1,13 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Settings
 {
-    public class OtherSettingsSettingsViewModel : RoutableViewModel
+	public class OtherSettingsSettingsViewModel : RoutableViewModel
 	{
-		public OtherSettingsSettingsViewModel(IScreen screen, string title) : base(screen, "OtherSettingsSettings", title)
+		public OtherSettingsSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "OtherSettingsSettings", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

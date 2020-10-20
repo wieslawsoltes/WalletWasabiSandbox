@@ -4,11 +4,11 @@ using WalletWasabi.Fluent.ViewModels.Home;
 
 namespace WalletWasabi.Fluent.ViewModels.WalletExplorer
 {
-    public class AddWalletViewModel : RoutableViewModel
+	public class AddWalletViewModel : RoutableViewModel
 	{
-		public AddWalletViewModel(IScreen screen, string title, RoutableViewModel home) : base(screen, "AddWallet", title)
+		public AddWalletViewModel(NavigationState navigationState, string title, WalletManagerViewModel walletManager) : base(navigationState, "AddWallet", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(new WalletManagerViewModel(screen, "Add Wallet", home)));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(walletManager));
 		}
 
 		public ICommand ShowCommand { get; }

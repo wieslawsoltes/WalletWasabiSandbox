@@ -3,11 +3,11 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Settings
 {
-    public class TorSettingsViewModel : RoutableViewModel
+	public class TorSettingsViewModel : RoutableViewModel
 	{
-		public TorSettingsViewModel(IScreen screen, string title) : base(screen, "TorSettings", title)
+		public TorSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "TorSettings", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

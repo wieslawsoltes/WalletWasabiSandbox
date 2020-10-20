@@ -3,11 +3,11 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Settings
 {
-    public class AnonymityLevelsSettingsViewModel : RoutableViewModel
+	public class AnonymityLevelsSettingsViewModel : RoutableViewModel
 	{
-		public AnonymityLevelsSettingsViewModel(IScreen screen, string title) : base(screen, "AnonymityLevelsSettings", title)
+		public AnonymityLevelsSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "AnonymityLevelsSettings", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

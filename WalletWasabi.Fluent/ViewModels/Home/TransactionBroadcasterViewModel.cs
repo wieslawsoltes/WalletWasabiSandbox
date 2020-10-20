@@ -5,9 +5,9 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 {
 	public class TransactionBroadcasterViewModel : RoutableViewModel
 	{
-		public TransactionBroadcasterViewModel(IScreen screen) : base(screen, "TransactionBroadcaster", "Transaction Broadcaster")
+		public TransactionBroadcasterViewModel(NavigationState navigationState) : base(navigationState, "TransactionBroadcaster", "Transaction Broadcaster")
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }

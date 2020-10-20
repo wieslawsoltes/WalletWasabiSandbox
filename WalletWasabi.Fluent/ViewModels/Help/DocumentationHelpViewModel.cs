@@ -3,11 +3,11 @@ using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Help
 {
-    public class DocumentationHelpViewModel : RoutableViewModel
+	public class DocumentationHelpViewModel : RoutableViewModel
 	{
-		public DocumentationHelpViewModel(IScreen screen, string title) : base(screen, "DocumentationHelp", title)
+		public DocumentationHelpViewModel(NavigationState navigationState, string title) : base(navigationState, "DocumentationHelp", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}
 
 		public ICommand ShowCommand { get; }
