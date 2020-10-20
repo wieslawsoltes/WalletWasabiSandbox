@@ -21,7 +21,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 			_recoveryWords = wallet.RecoveryWords;
 
 			ShowCommand = ReactiveCommand.Create(() => wizardScreen.Router.Navigate.Execute(this));
-			CancelCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(navigationState.CancelView()));
+			CancelCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.CancelView()));
 			NextCommand = ReactiveCommand.Create(() =>
 			{
 				walletManager.Wallets.Add(wallet);
