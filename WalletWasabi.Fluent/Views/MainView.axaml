@@ -51,26 +51,40 @@
       </DockPanel>
     </SplitView>
     <!-- Dialog -->
-    <Panel x:Name="Dialog" DataContext="{Binding Dialog}" Background="#7F7A7A7A" IsVisible="{Binding IsDialogVisible}">
-      <i:Interaction.Behaviors>
-        <ia:EventTriggerBehavior EventName="PointerPressed" SourceObject="{Binding #Dialog}">
-          <ia:CallMethodAction TargetObject="{Binding}" MethodName="Close" />
-        </ia:EventTriggerBehavior>
-      </i:Interaction.Behaviors>
-      <Border Background="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="700" MinHeight="450">
-        <rxui:RoutedViewHost Router="{Binding Router}">
-          <rxui:RoutedViewHost.ViewLocator>
-            <vl:ScreenViewLocator />
-          </rxui:RoutedViewHost.ViewLocator>
-          <rxui:RoutedViewHost.PageTransition>
-            <CrossFade Duration="0:0:0.25" />
-          </rxui:RoutedViewHost.PageTransition>
-          <rxui:RoutedViewHost.DefaultContent>
-            <TextBlock Text="Default content"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
-          </rxui:RoutedViewHost.DefaultContent>
-        </rxui:RoutedViewHost>
+    <Panel x:Name="Dialog" DataContext="{Binding Dialog}" IsVisible="{Binding IsDialogVisible}">
+      <Panel x:Name="DialogBackground" Background="#7F7A7A7A">
+        <i:Interaction.Behaviors>
+          <ia:EventTriggerBehavior EventName="PointerPressed" SourceObject="{Binding #DialogBackground}">
+            <ia:CallMethodAction TargetObject="{Binding}" MethodName="Close" />
+          </ia:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+      </Panel>
+      <Border Background="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="750" MinHeight="450">
+        <DockPanel>
+          <Button DockPanel.Dock="Left"
+                  Content="&lt;"
+                  FontSize="28"
+                  Margin="5"
+                  MinWidth="50"
+                  MinHeight="50"
+                  Background="Transparent"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Command="{Binding GoBack}" />
+          <rxui:RoutedViewHost Router="{Binding Router}">
+            <rxui:RoutedViewHost.ViewLocator>
+              <vl:ScreenViewLocator />
+            </rxui:RoutedViewHost.ViewLocator>
+            <rxui:RoutedViewHost.PageTransition>
+              <CrossFade Duration="0:0:0.25" />
+            </rxui:RoutedViewHost.PageTransition>
+            <rxui:RoutedViewHost.DefaultContent>
+              <TextBlock Text="Default content"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" />
+            </rxui:RoutedViewHost.DefaultContent>
+          </rxui:RoutedViewHost>
+        </DockPanel>
       </Border>
     </Panel>
   </Panel>
