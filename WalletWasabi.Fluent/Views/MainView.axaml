@@ -31,6 +31,13 @@
             <Button Content="Help" Command="{Binding HelpCommand}" Background="Transparent" Margin="5" Padding="5" />
             <Button Content="Settings" Command="{Binding SettingsCommand}" Background="Transparent" Margin="5" Padding="5" />
           </StackPanel>
+          <ItemsControl Background="Transparent" BorderThickness="0" DataContext="{Binding WalletManager}" Items="{Binding Wallets}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Button Content="{Binding Title}" Command="{Binding ShowCommand}" Background="Transparent" Margin="5" Padding="5" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
         </DockPanel>
       </SplitView.Pane>
       <!-- Content -->
