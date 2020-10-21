@@ -1,4 +1,5 @@
 using System;
+using System.Reactive;
 using System.Reactive.Linq;
 using ReactiveUI;
 
@@ -15,6 +16,8 @@ namespace WalletWasabi.Fluent.ViewModels
 		}
 
 		public RoutingState Router { get; } = new RoutingState();
+
+		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
 
 		public bool IsDialogVisible
 		{
