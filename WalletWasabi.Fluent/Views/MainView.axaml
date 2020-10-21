@@ -48,6 +48,7 @@
         </rxui:RoutedViewHost>
       </DockPanel>
     </SplitView>
+    <!-- Dialog -->
     <Panel DataContext="{Binding Dialog}" Background="#7F7A7A7A" IsVisible="{Binding IsDialogVisible}">
       <Border Background="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="700" MinHeight="450">
         <rxui:RoutedViewHost Router="{Binding Router}">
