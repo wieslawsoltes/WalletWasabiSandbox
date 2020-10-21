@@ -14,6 +14,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 			: base(new NavigationState()
 			{
 				Screen = () => wizardScreen,
+				Dialog = () => navigationState.Dialog(),
 				HomeView = () => navigationState.HomeView(),
 				CancelView = () => navigationState.CancelView(),
 			}, "GenerateWalletConfirm", title)
@@ -25,6 +26,9 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 			NextCommand = ReactiveCommand.Create(() =>
 			{
 				walletManager.Wallets.Add(wallet);
+#if USE_DIALOG
+				navigationState.Dialog().Router.NavigationStack.Clear();
+#endif
 				navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.HomeView());
 			});
 		}

@@ -15,11 +15,16 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 
 		public WalletManagerViewModel(NavigationState navigationState, string title) : base(navigationState, "WalletManager", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
+#if !USE_DIALOG
+			//ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
+#else
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(this));
+#endif
 
 			var navigationStateWalletManager = new NavigationState()
 			{
 				Screen = () => navigationState.Screen(),
+				Dialog = () => navigationState.Dialog(),
 				HomeView = () => _home,
 				CancelView = () => _home,
 			};

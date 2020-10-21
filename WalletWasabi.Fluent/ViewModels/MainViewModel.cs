@@ -7,6 +7,8 @@ namespace WalletWasabi.Fluent.ViewModels
 {
 	public class MainViewModel : ReactiveObject, IScreen
 	{
+		private DialogViewModel _dialog;
+
 		public MainViewModel()
 		{
 			var navigationState = new NavigationState();
@@ -16,17 +18,24 @@ namespace WalletWasabi.Fluent.ViewModels
 			var walletExplorerViewModel = new WalletExplorerViewModel(navigationState, walletManager);
 			var settingsViewModel = new SettingsViewModel(navigationState);
 
-			HomeCommand = ReactiveCommand.Create(() => Router.NavigateAndReset.Execute(walletExplorerViewModel));
+			HomeCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(walletExplorerViewModel));
 
-			HelpCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(helpViewModel));
+			HelpCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(helpViewModel));
 
-			AddWalletCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletManager));
+#if !USE_DIALOG
+			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(walletManager));
+#else
+			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(walletManager));
+#endif
 
-			SettingsCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(settingsViewModel));
+			SettingsCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(settingsViewModel));
+
+			_dialog = new DialogViewModel();
 
 			walletManager.Home = walletExplorerViewModel;
 
 			navigationState.Screen = () => this;
+			navigationState.Dialog = () => _dialog;
 			navigationState.HomeView = () => walletExplorerViewModel;
 			navigationState.CancelView = () => walletExplorerViewModel;
 
@@ -36,6 +45,12 @@ namespace WalletWasabi.Fluent.ViewModels
 		}
 
 		public RoutingState Router { get; } = new RoutingState();
+
+		public DialogViewModel Dialog
+		{
+			get => _dialog;
+			set => this.RaiseAndSetIfChanged(ref _dialog, value);
+		}
 
 		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
 

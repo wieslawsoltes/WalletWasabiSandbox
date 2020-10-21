@@ -14,7 +14,11 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 		{
 			ShowCommand = ReactiveCommand.Create(() =>
 			{
+#if !USE_DIALOG
 				navigationState.Screen().Router.Navigate.Execute(this);
+#else
+				navigationState.Dialog().Router.Navigate.Execute(this);
+#endif
 				Router.NavigateAndReset.Execute(
 					new GenerateWalletPasswordViewModel(
 						navigationState,

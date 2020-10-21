@@ -19,6 +19,7 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 			var navigationStateWalletExplorer = new NavigationState()
 			{
 				Screen = () => navigationState.Screen(),
+				Dialog = () => navigationState.Dialog(),
 				HomeView = () => this,
 				CancelView = () => this,
 			};

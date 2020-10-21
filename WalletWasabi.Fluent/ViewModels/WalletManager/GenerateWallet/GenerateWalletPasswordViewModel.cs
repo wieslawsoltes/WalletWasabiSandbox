@@ -14,12 +14,21 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 			: base(new NavigationState()
 			{
 				Screen = () => wizardScreen,
+				Dialog = () => navigationState.Dialog(),
 				HomeView = () => navigationState.HomeView(),
 				CancelView = () => navigationState.CancelView(),
 			}, "GenerateWalletPassword", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => wizardScreen.Router.Navigate.Execute(this));
+#if !USE_DIALOG
 			CancelCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(navigationState.CancelView()));
+#else
+			CancelCommand = ReactiveCommand.Create(() =>
+			{
+				navigationState.Dialog().Router.NavigationStack.Clear();
+				navigationState.Screen().Router.Navigate.Execute(navigationState.CancelView());
+			});
+#endif
 			NextCommand = ReactiveCommand.Create(() =>
 			{
 				wallet.Password = _password;

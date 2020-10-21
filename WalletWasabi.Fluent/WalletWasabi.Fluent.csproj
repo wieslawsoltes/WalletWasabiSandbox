@@ -6,6 +6,9 @@
   <ItemGroup>
     <PublishReadyToRunExclude Include="Microsoft.CodeAnalysis.dll" />
   </ItemGroup>
+	<PropertyGroup>
+		<DefineConstants>$(DefineConstants);USE_DIALOG</DefineConstants>
+	</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="0.10.999-cibuild0011197-beta" />
     <PackageReference Include="Avalonia.Desktop" Version="0.10.999-cibuild0011197-beta" />
