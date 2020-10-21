@@ -14,5 +14,6 @@
     <PackageReference Include="Avalonia.Desktop" Version="0.10.999-cibuild0011197-beta" />
     <PackageReference Include="Avalonia.Diagnostics" Version="0.10.999-cibuild0011197-beta" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.999-cibuild0011197-beta" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.0-preview5" />
   </ItemGroup>
 </Project>
