@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reactive.Linq;
 using ReactiveUI;
 
@@ -20,6 +20,11 @@ namespace WalletWasabi.Fluent.ViewModels
 		{
 			get => _isDialogVisible;
 			set => this.RaiseAndSetIfChanged(ref _isDialogVisible, value);
+		}
+
+		public void Close()
+		{
+			Router.NavigationStack.Clear();
 		}
 	}
 }

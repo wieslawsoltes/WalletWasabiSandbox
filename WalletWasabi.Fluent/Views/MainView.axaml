@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
              xmlns:vl="clr-namespace:WalletWasabi.Fluent"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="WalletWasabi.Fluent.Views.MainView">
   <Panel>
@@ -49,7 +51,12 @@
       </DockPanel>
     </SplitView>
     <!-- Dialog -->
-    <Panel DataContext="{Binding Dialog}" Background="#7F7A7A7A" IsVisible="{Binding IsDialogVisible}">
+    <Panel x:Name="Dialog" DataContext="{Binding Dialog}" Background="#7F7A7A7A" IsVisible="{Binding IsDialogVisible}">
+      <i:Interaction.Behaviors>
+        <ia:EventTriggerBehavior EventName="PointerPressed" SourceObject="{Binding #Dialog}">
+          <ia:CallMethodAction TargetObject="{Binding}" MethodName="Close" />
+        </ia:EventTriggerBehavior>
+      </i:Interaction.Behaviors>
       <Border Background="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="700" MinHeight="450">
         <rxui:RoutedViewHost Router="{Binding Router}">
           <rxui:RoutedViewHost.ViewLocator>
