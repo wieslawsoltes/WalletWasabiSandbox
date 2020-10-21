@@ -20,7 +20,11 @@ namespace WalletWasabi.Fluent.ViewModels
 
 			HomeCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(walletExplorerViewModel));
 
+#if !USE_DIALOG
 			HelpCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(helpViewModel));
+#else
+			HelpCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(helpViewModel));
+#endif
 
 #if !USE_DIALOG
 			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(walletManager));
@@ -28,8 +32,11 @@ namespace WalletWasabi.Fluent.ViewModels
 			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(walletManager));
 #endif
 
+#if !USE_DIALOG
 			SettingsCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(settingsViewModel));
-
+#else
+			SettingsCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(settingsViewModel));
+#endif
 			_dialog = new DialogViewModel();
 
 			walletManager.Home = walletExplorerViewModel;
