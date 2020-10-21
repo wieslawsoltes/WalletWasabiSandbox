@@ -1,13 +1,17 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels.Help
 {
-    public class LegalDocumentHelpViewModel : RoutableViewModel
+	public class LegalDocumentHelpViewModel : RoutableViewModel
 	{
-		public LegalDocumentHelpViewModel(IScreen screen, string title) : base(screen, "LegalDocumentHelp", title)
+		public LegalDocumentHelpViewModel(NavigationState navigationState, string title) : base(navigationState, "LegalDocumentHelp", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+#if !USE_DIALOG
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
+#else
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(this));
+#endif
 		}
 
 		public ICommand ShowCommand { get; }

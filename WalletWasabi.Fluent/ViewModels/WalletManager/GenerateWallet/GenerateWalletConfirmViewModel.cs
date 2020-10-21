@@ -1,5 +1,8 @@
+using System;
 using System.Windows.Input;
 using ReactiveUI;
+using WalletWasabi.Fluent.ViewModels.Home;
+using WalletWasabi.Fluent.ViewModels.WalletExplorer;
 
 namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 {
@@ -7,11 +10,27 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 	{
 		private string[] _recoveryWords;
 
-		public GenerateWalletConfirmViewModel(IScreen homeScreen, IScreen wizardScreen, string title, RoutableViewModel cancel, RoutableViewModel home) : base(wizardScreen, "GenerateWalletConfirm", title)
+		public GenerateWalletConfirmViewModel(NavigationState navigationState, IScreen wizardScreen, string title, WalletViewModel wallet, WalletManagerViewModel walletManager)
+			: base(new NavigationState()
+			{
+				Screen = () => wizardScreen,
+				Dialog = () => navigationState.Dialog(),
+				HomeView = () => navigationState.HomeView(),
+				CancelView = () => navigationState.CancelView(),
+			}, "GenerateWalletConfirm", title)
 		{
+			_recoveryWords = wallet.RecoveryWords;
+
 			ShowCommand = ReactiveCommand.Create(() => wizardScreen.Router.Navigate.Execute(this));
-			CancelCommand = ReactiveCommand.Create(() => homeScreen.Router.Navigate.Execute(cancel));
-			NextCommand = ReactiveCommand.Create(() => homeScreen.Router.NavigateAndReset.Execute(home));
+			CancelCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.CancelView()));
+			NextCommand = ReactiveCommand.Create(() =>
+			{
+				walletManager.Wallets.Add(wallet);
+#if USE_DIALOG
+				navigationState.Dialog().Router.NavigationStack.Clear();
+#endif
+				navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.HomeView());
+			});
 		}
 
 		public ICommand ShowCommand { get; }

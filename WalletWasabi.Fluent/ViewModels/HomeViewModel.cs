@@ -8,15 +8,15 @@ namespace WalletWasabi.Fluent.ViewModels
 	{
 		private ObservableCollection<RoutableViewModel> _items;
 
-		public HomeViewModel(IScreen screen) : base(screen, "Home", "Home")
+		public HomeViewModel(NavigationState navigationState, WalletManagerViewModel walletManager) : base(navigationState, "Home", "Home")
 		{
 			_items = new ObservableCollection<RoutableViewModel>
 			{
-				new WalletExplorerViewModel(screen),
-				new WalletManagerViewModel(screen, "Add Wallet", this),
-				new TransactionBroadcasterViewModel(screen),
-				new SettingsViewModel(screen),
-				new HelpViewModel(screen)
+				new WalletExplorerViewModel(navigationState, walletManager),
+				walletManager,
+				new TransactionBroadcasterViewModel(navigationState),
+				new SettingsViewModel(navigationState),
+				new HelpViewModel(navigationState)
 			};
 		}
 

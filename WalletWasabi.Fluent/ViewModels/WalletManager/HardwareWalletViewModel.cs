@@ -5,9 +5,13 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
 	public class HardwareWalletViewModel : RoutableViewModel
 	{
-		public HardwareWalletViewModel(IScreen screen, string title) : base(screen, "HardwareWallet", title)
+		public HardwareWalletViewModel(NavigationState navigationState, string title) : base(navigationState, "HardwareWallet", title)
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+#if !USE_DIALOG
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
+#else
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(this));
+#endif
 		}
 
 		public ICommand ShowCommand { get; }

@@ -1,19 +1,20 @@
-﻿using ReactiveUI;
+using ReactiveUI;
 
 namespace WalletWasabi.Fluent.ViewModels
 {
 	public abstract class RoutableViewModel : ReactiveObject, IRoutableViewModel
 	{
+		private NavigationState _navigationState;
 		private string _title;
 
-		public RoutableViewModel(IScreen screen, string urlPathSegment, string title)
+		public RoutableViewModel(NavigationState navigationState, string urlPathSegment, string title)
 		{
-			HostScreen = screen;
+			_navigationState = navigationState;
 			UrlPathSegment = urlPathSegment;
 			_title = title;
 		}
 
-		public IScreen HostScreen { get; }
+		public IScreen HostScreen => _navigationState.Screen();
 
 		public string UrlPathSegment { get; }
 

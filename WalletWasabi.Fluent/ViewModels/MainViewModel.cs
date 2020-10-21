@@ -7,20 +7,45 @@ namespace WalletWasabi.Fluent.ViewModels
 {
 	public class MainViewModel : ReactiveObject, IScreen
 	{
+		private DialogViewModel _dialog;
+		private WalletManagerViewModel _walletManager;
+
 		public MainViewModel()
 		{
-			var helpViewModel = new HelpViewModel(this);
-			var walletExplorerViewModel = new WalletExplorerViewModel(this);
-			var settingsViewModel = new SettingsViewModel(this);
+			var navigationState = new NavigationState();
 
-			HomeCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(walletExplorerViewModel));
+			_dialog = new DialogViewModel();
+			_walletManager = new WalletManagerViewModel(navigationState, "Add Wallet");
 
-			HelpCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(helpViewModel));
+			var helpViewModel = new HelpViewModel(navigationState);
+			var walletExplorerViewModel = new WalletExplorerViewModel(navigationState, _walletManager);
+			var settingsViewModel = new SettingsViewModel(navigationState);
 
-			AddWalletCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(
-				new WalletManagerViewModel(this, "Add Wallet", walletExplorerViewModel)));
+			HomeCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(walletExplorerViewModel));
 
-			SettingsCommand = ReactiveCommand.Create(() => Router.Navigate.Execute(settingsViewModel));
+#if !USE_DIALOG
+			HelpCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(helpViewModel));
+#else
+			HelpCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(helpViewModel));
+#endif
+
+#if !USE_DIALOG
+			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(walletManager));
+#else
+			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(_walletManager));
+#endif
+
+#if !USE_DIALOG
+			SettingsCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(settingsViewModel));
+#else
+			SettingsCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(settingsViewModel));
+#endif
+			_walletManager.Home = walletExplorerViewModel;
+
+			navigationState.Screen = () => this;
+			navigationState.Dialog = () => _dialog;
+			navigationState.HomeView = () => walletExplorerViewModel;
+			navigationState.CancelView = () => walletExplorerViewModel;
 
 			Router.NavigateAndReset.Execute(walletExplorerViewModel);
 
@@ -28,6 +53,18 @@ namespace WalletWasabi.Fluent.ViewModels
 		}
 
 		public RoutingState Router { get; } = new RoutingState();
+
+		public DialogViewModel Dialog
+		{
+			get => _dialog;
+			set => this.RaiseAndSetIfChanged(ref _dialog, value);
+		}
+
+		public WalletManagerViewModel WalletManager
+		{
+			get => _walletManager;
+			set => this.RaiseAndSetIfChanged(ref _walletManager, value);
+		}
 
 		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
 

@@ -1,5 +1,8 @@
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 using System.Windows.Input;
+using DynamicData;
+using DynamicData.Binding;
 using ReactiveUI;
 using WalletWasabi.Fluent.ViewModels.WalletExplorer;
 
@@ -7,28 +10,31 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 {
 	public class WalletExplorerViewModel : RoutableViewModel
 	{
-		private ObservableCollection<RoutableViewModel> _items;
+		private ReadOnlyObservableCollection<RoutableViewModel> _items;
 
-		public WalletExplorerViewModel(IScreen screen) : base(screen, "WalletExplorer", "Wallet Explorer")
+		public WalletExplorerViewModel(NavigationState navigationState, WalletManagerViewModel walletManager) : base(navigationState, "WalletExplorer", "Wallet Explorer")
 		{
-			ShowCommand = ReactiveCommand.Create(() => screen.Router.Navigate.Execute(this));
+			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 
-			_items = new ObservableCollection<RoutableViewModel>
+			var navigationStateWalletExplorer = new NavigationState()
 			{
-				new WalletViewModel(screen, "Random Wallet (0 BTC)"),
-				new WalletViewModel(screen, "Random Wallet 2 (0 BTC)"),
-				new WalletViewModel(screen, "Random Wallet 3 (0 BTC)"),
-				new WalletViewModel(screen, "Random Wallet 4 (0 BTC)"),
-				new AddWalletViewModel(screen, "Add Wallet", this),
+				Screen = () => navigationState.Screen(),
+				Dialog = () => navigationState.Dialog(),
+				HomeView = () => this,
+				CancelView = () => this,
 			};
+
+			var list = new SourceList<RoutableViewModel>();
+			list.Add(new AddWalletViewModel(navigationStateWalletExplorer, "Add Wallet", walletManager));
+
+			walletManager.Wallets.ToObservableChangeSet()
+				.Merge(list.Connect())
+				.Bind(out _items)
+				.AsObservableList();
 		}
 
 		public ICommand ShowCommand { get; }
 
-		public ObservableCollection<RoutableViewModel> Items
-		{
-			get => _items;
-			set => this.RaiseAndSetIfChanged(ref _items, value);
-		}
+		public ReadOnlyObservableCollection<RoutableViewModel> Items => _items;
 	}
 }
