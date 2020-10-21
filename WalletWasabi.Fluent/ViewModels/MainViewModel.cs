@@ -8,14 +8,17 @@ namespace WalletWasabi.Fluent.ViewModels
 	public class MainViewModel : ReactiveObject, IScreen
 	{
 		private DialogViewModel _dialog;
+		private WalletManagerViewModel _walletManager;
 
 		public MainViewModel()
 		{
 			var navigationState = new NavigationState();
 
-			var walletManager = new WalletManagerViewModel(navigationState, "Add Wallet");
+			_dialog = new DialogViewModel();
+			_walletManager = new WalletManagerViewModel(navigationState, "Add Wallet");
+
 			var helpViewModel = new HelpViewModel(navigationState);
-			var walletExplorerViewModel = new WalletExplorerViewModel(navigationState, walletManager);
+			var walletExplorerViewModel = new WalletExplorerViewModel(navigationState, _walletManager);
 			var settingsViewModel = new SettingsViewModel(navigationState);
 
 			HomeCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.NavigateAndReset.Execute(walletExplorerViewModel));
@@ -29,7 +32,7 @@ namespace WalletWasabi.Fluent.ViewModels
 #if !USE_DIALOG
 			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(walletManager));
 #else
-			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(walletManager));
+			AddWalletCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(_walletManager));
 #endif
 
 #if !USE_DIALOG
@@ -37,9 +40,7 @@ namespace WalletWasabi.Fluent.ViewModels
 #else
 			SettingsCommand = ReactiveCommand.Create(() => navigationState.Dialog().Router.Navigate.Execute(settingsViewModel));
 #endif
-			_dialog = new DialogViewModel();
-
-			walletManager.Home = walletExplorerViewModel;
+			_walletManager.Home = walletExplorerViewModel;
 
 			navigationState.Screen = () => this;
 			navigationState.Dialog = () => _dialog;
@@ -57,6 +58,12 @@ namespace WalletWasabi.Fluent.ViewModels
 		{
 			get => _dialog;
 			set => this.RaiseAndSetIfChanged(ref _dialog, value);
+		}
+
+		public WalletManagerViewModel WalletManager
+		{
+			get => _walletManager;
+			set => this.RaiseAndSetIfChanged(ref _walletManager, value);
 		}
 
 		public ReactiveCommand<Unit, Unit> GoBack => Router.NavigateBack;
