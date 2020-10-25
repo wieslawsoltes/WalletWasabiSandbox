@@ -10,7 +10,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
 	public class GenerateWalletViewModel : RoutableViewModel, IScreen
 	{
-		public GenerateWalletViewModel(NavigationState navigationState, string title, WalletManagerViewModel walletManager) : base(navigationState, "GenerateWallet", title)
+		public GenerateWalletViewModel(NavigationStateViewModel navigationState, string title, WalletManagerViewModel walletManager) : base(navigationState, "GenerateWallet", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() =>
 			{

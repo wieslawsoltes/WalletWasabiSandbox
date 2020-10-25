@@ -5,7 +5,7 @@ namespace WalletWasabi.Fluent.ViewModels.Settings
 {
 	public class TorSettingsViewModel : RoutableViewModel
 	{
-		public TorSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "TorSettings", title)
+		public TorSettingsViewModel(NavigationStateViewModel navigationState, string title) : base(navigationState, "TorSettings", title)
 		{
 #if !USE_DIALOG
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));

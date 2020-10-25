@@ -8,7 +8,7 @@ namespace WalletWasabi.Fluent.ViewModels
 	{
 		private ObservableCollection<RoutableViewModel> _items;
 
-		public HomeViewModel(NavigationState navigationState, WalletManagerViewModel walletManager) : base(navigationState, "Home", "Home")
+		public HomeViewModel(NavigationStateViewModel navigationState, WalletManagerViewModel walletManager) : base(navigationState, "Home", "Home")
 		{
 			_items = new ObservableCollection<RoutableViewModel>
 			{

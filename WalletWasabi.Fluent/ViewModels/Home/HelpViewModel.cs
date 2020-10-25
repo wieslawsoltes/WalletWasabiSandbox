@@ -9,7 +9,7 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 	{
 		private ObservableCollection<RoutableViewModel> _items;
 
-		public HelpViewModel(NavigationState navigationState) : base(navigationState, "Help", "Help")
+		public HelpViewModel(NavigationStateViewModel navigationState) : base(navigationState, "Help", "Help")
 		{
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 

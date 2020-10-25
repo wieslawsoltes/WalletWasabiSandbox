@@ -10,12 +10,12 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 	{
 		private string[] _recoveryWords;
 
-		public GenerateWalletConfirmViewModel(NavigationState navigationState, IScreen wizardScreen, string title, WalletViewModel wallet, WalletManagerViewModel walletManager)
-			: base(new NavigationState()
+		public GenerateWalletConfirmViewModel(NavigationStateViewModel navigationState, IScreen wizardScreen, string title, WalletViewModel wallet, WalletManagerViewModel walletManager)
+			: base(new NavigationStateViewModel()
 			{
 				Screen = () => wizardScreen,
 				Dialog = () => navigationState.Dialog(),
-				HomeView = () => navigationState.HomeView(),
+				NextView = () => navigationState.NextView(),
 				CancelView = () => navigationState.CancelView(),
 			}, "GenerateWalletConfirm", title)
 		{
@@ -29,7 +29,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 #if USE_DIALOG
 				navigationState.Dialog().Router.NavigationStack.Clear();
 #endif
-				navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.HomeView());
+				navigationState.Screen().Router.NavigateAndReset.Execute(navigationState.NextView());
 			});
 		}
 

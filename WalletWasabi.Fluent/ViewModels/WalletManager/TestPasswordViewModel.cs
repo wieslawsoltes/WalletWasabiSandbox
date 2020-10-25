@@ -5,7 +5,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager
 {
 	public class TestPasswordViewModel : RoutableViewModel
 	{
-		public TestPasswordViewModel(NavigationState navigationState, string title) : base(navigationState, "TestPassword", title)
+		public TestPasswordViewModel(NavigationStateViewModel navigationState, string title) : base(navigationState, "TestPassword", title)
 		{
 #if !USE_DIALOG
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));

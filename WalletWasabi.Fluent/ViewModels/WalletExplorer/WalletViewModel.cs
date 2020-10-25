@@ -9,7 +9,7 @@ namespace WalletWasabi.Fluent.ViewModels.WalletExplorer
 		private string _password;
 		private string[] _recoveryWords;
 
-		public WalletViewModel(NavigationState navigationState, string title) : base(navigationState, "Wallet", title)
+		public WalletViewModel(NavigationStateViewModel navigationState, string title) : base(navigationState, "Wallet", title)
 		{
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 		}

@@ -12,7 +12,7 @@ namespace WalletWasabi.Fluent.ViewModels
 
 		public MainViewModel()
 		{
-			var navigationState = new NavigationState();
+			var navigationState = new NavigationStateViewModel();
 
 			_dialog = new DialogViewModel();
 			_walletManager = new WalletManagerViewModel(navigationState, "Add Wallet");
@@ -44,7 +44,7 @@ namespace WalletWasabi.Fluent.ViewModels
 
 			navigationState.Screen = () => this;
 			navigationState.Dialog = () => _dialog;
-			navigationState.HomeView = () => walletExplorerViewModel;
+			navigationState.NextView = () => walletExplorerViewModel;
 			navigationState.CancelView = () => walletExplorerViewModel;
 
 			Router.NavigateAndReset.Execute(walletExplorerViewModel);

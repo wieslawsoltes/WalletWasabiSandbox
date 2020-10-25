@@ -5,7 +5,7 @@ namespace WalletWasabi.Fluent.ViewModels.Settings
 {
 	public class BitcoinSettingsViewModel : RoutableViewModel
 	{
-		public BitcoinSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "BitcoinSettings", title)
+		public BitcoinSettingsViewModel(NavigationStateViewModel navigationState, string title) : base(navigationState, "BitcoinSettings", title)
 		{
 #if !USE_DIALOG
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));

@@ -5,7 +5,7 @@ namespace WalletWasabi.Fluent.ViewModels.Settings
 {
 	public class OtherSettingsSettingsViewModel : RoutableViewModel
 	{
-		public OtherSettingsSettingsViewModel(NavigationState navigationState, string title) : base(navigationState, "OtherSettingsSettings", title)
+		public OtherSettingsSettingsViewModel(NavigationStateViewModel navigationState, string title) : base(navigationState, "OtherSettingsSettings", title)
 		{
 #if !USE_DIALOG
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));

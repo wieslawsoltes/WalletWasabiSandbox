@@ -10,12 +10,12 @@ namespace WalletWasabi.Fluent.ViewModels.WalletManager.GenerateWallet
 		private string _password;
 		private string _confirmPassword;
 
-		public GenerateWalletPasswordViewModel(NavigationState navigationState, IScreen wizardScreen, string title, WalletViewModel wallet, WalletManagerViewModel walletManager)
-			: base(new NavigationState()
+		public GenerateWalletPasswordViewModel(NavigationStateViewModel navigationState, IScreen wizardScreen, string title, WalletViewModel wallet, WalletManagerViewModel walletManager)
+			: base(new NavigationStateViewModel()
 			{
 				Screen = () => wizardScreen,
 				Dialog = () => navigationState.Dialog(),
-				HomeView = () => navigationState.HomeView(),
+				NextView = () => navigationState.NextView(),
 				CancelView = () => navigationState.CancelView(),
 			}, "GenerateWalletPassword", title)
 		{

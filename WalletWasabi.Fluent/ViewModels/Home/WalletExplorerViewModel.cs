@@ -12,15 +12,15 @@ namespace WalletWasabi.Fluent.ViewModels.Home
 	{
 		private ReadOnlyObservableCollection<RoutableViewModel> _items;
 
-		public WalletExplorerViewModel(NavigationState navigationState, WalletManagerViewModel walletManager) : base(navigationState, "WalletExplorer", "Wallet Explorer")
+		public WalletExplorerViewModel(NavigationStateViewModel navigationState, WalletManagerViewModel walletManager) : base(navigationState, "WalletExplorer", "Wallet Explorer")
 		{
 			ShowCommand = ReactiveCommand.Create(() => navigationState.Screen().Router.Navigate.Execute(this));
 
-			var navigationStateWalletExplorer = new NavigationState()
+			var navigationStateWalletExplorer = new NavigationStateViewModel()
 			{
 				Screen = () => navigationState.Screen(),
 				Dialog = () => navigationState.Dialog(),
-				HomeView = () => this,
+				NextView = () => this,
 				CancelView = () => this,
 			};
 

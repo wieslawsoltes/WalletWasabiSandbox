@@ -4,10 +4,10 @@ namespace WalletWasabi.Fluent.ViewModels
 {
 	public abstract class RoutableViewModel : ReactiveObject, IRoutableViewModel
 	{
-		private NavigationState _navigationState;
+		private NavigationStateViewModel _navigationState;
 		private string _title;
 
-		public RoutableViewModel(NavigationState navigationState, string urlPathSegment, string title)
+		public RoutableViewModel(NavigationStateViewModel navigationState, string urlPathSegment, string title)
 		{
 			_navigationState = navigationState;
 			UrlPathSegment = urlPathSegment;
