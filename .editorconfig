@@ -1,6 +1,4 @@
-# Rules in this file were initially inferred by Visual Studio IntelliCode from the C:\Users\user\Desktop\WalletWasabi codebase based on best match to current usage at 2019-04-22
-# You can modify the rules from these initially generated values to suit your own policies
-# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+# You can learn more about .editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 root = true
 
 # For all files.
@@ -15,11 +13,12 @@ trim_trailing_whitespace = true
 
 # use hard tabs for indentation
 indent_style = tab
+indent_size = 4
 
 # Formatting - set preferred newline characters
 end_of_line = lf
 
-[*.xaml]
+[*.{xaml,axaml}]
 
 indent_style = space
 indent_size = 2
@@ -142,14 +141,6 @@ dotnet_naming_symbols.constant_or_static_fields.required_modifiers = static
 
 dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
-# name all readonly fields using PascalCase
-dotnet_naming_rule.readonly_fields_should_be_pascal_case.severity = error
-dotnet_naming_rule.readonly_fields_should_be_pascal_case.symbols  = readonly_fields
-dotnet_naming_rule.readonly_fields_should_be_pascal_case.style    = pascal_case_style
-
-dotnet_naming_symbols.readonly_fields.applicable_kinds   = field
-dotnet_naming_symbols.readonly_fields.required_modifiers = readonly
-
 # private fields should be _camelCase
 dotnet_naming_rule.camel_case_for_private_fields.severity = error
 dotnet_naming_rule.camel_case_for_private_fields.symbols  = private_fields
@@ -251,3 +242,30 @@ dotnet_diagnostic.IDE0004.severity = error
 
 # IDE0019: Use pattern matching
 csharp_style_pattern_matching_over_as_with_null_check = true:error
+
+# CA2016: Forward the 'CancellationToken' parameter to methods that take one
+dotnet_diagnostic.CA2016.severity = warning
+
+# CA2000: Dispose objects before losing scope
+dotnet_diagnostic.CA2000.severity = warning
+
+# CA1825: Avoid zero-length array allocations
+dotnet_diagnostic.CA1825.severity = warning
+
+# CA1829: Use Length/Count property instead of Count() when available
+dotnet_diagnostic.CA1829.severity = warning
+
+# CA1816: Dispose methods should call SuppressFinalize
+dotnet_diagnostic.CA1816.severity = none
+
+# CA1835: Prefer the 'Memory'-based overloads for 'ReadAsync' and 'WriteAsync'
+dotnet_diagnostic.CA1835.severity = warning
+
+# CA2200: Rethrow to preserve stack details
+dotnet_diagnostic.CA2200.severity = warning
+
+# CA1827: Do not use Count() or LongCount() when Any() can be used
+dotnet_diagnostic.CA1827.severity = warning
+
+# CA1822: This complains to make functions static. Static is evil. Don't let it complain.
+dotnet_diagnostic.CA1822.severity = none
